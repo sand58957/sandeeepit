@@ -8,14 +8,10 @@ django.setup()
 User = get_user_model()
 email = '008snk@gmail.com'
 password = 'Manjil@1982'
-username = 'admin_user' # Needs a username, defaulting to admin_user or part of email
 
 try:
     if not User.objects.filter(email=email).exists():
-        # Adjust username if needed based on User model uniqueness
-        if User.objects.filter(username=username).exists():
-             username = email.split('@')[0]
-             
+        username = email.split('@')[0]
         user = User.objects.create_superuser(username=username, email=email, password=password)
         print(f"Superuser created successfully: {email}")
     else:
