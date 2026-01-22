@@ -11,8 +11,12 @@ def load_env():
             for line in file:
                 line = line.strip()
                 if line and not line.startswith("#"):
-                    key, value = line.split('=')
-                    os.environ[key] = value
+                    try:
+                        key, value = line.split('=', 1)
+                        if key not in os.environ:
+                            os.environ[key] = value
+                    except ValueError:
+                        pass
 
 # Load environment variables from the .env file
 load_env()
