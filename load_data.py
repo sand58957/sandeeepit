@@ -316,7 +316,7 @@ primaryMenu.objects.get_or_create(id=7, defaults={'name': 'Contact', 'url': '/co
 print("✓ Primary Menu created")
 
 # Home Page SEO
-homePageSeo.objects.get_or_create(id=1, defaults={
+homePageSEO.objects.get_or_create(id=1, defaults={
     'meta_title': 'TCG Agency - Creative Digital Agency',
     'meta_description': 'Professional web development and digital marketing services. We help businesses grow online.',
 })
