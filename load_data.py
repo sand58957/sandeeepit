@@ -49,7 +49,7 @@ teamSection.objects.get_or_create(id=3, defaults={'name': 'Adrian Eodri', 'posit
 print("✓ Team Section created")
 
 # Slider Section
-sliderSection.objects.get_or_create(id=1, defaults={
+sliderSection.objects.update_or_create(id=1, defaults={
     'subtitle': 'Welcome to Agency',
     'title': 'Creative Digital Agency',
     'description': 'We create amazing digital experiences that help businesses grow and succeed in the digital world.',
@@ -62,7 +62,7 @@ sliderSection.objects.get_or_create(id=1, defaults={
 print("✓ Slider Section created")
 
 # About Section
-aboutSection.objects.get_or_create(id=1, defaults={
+aboutSection.objects.update_or_create(id=1, defaults={
     'subtitle': 'About Us',
     'title': 'We Are Digital Agency',
     'short_description': 'Professional web design and development services for your business.',
@@ -108,21 +108,21 @@ cat3, _ = projectCategory.objects.get_or_create(id=3, defaults={'name': 'Marketi
 print("✓ Project Categories created")
 
 # Project Section
-projectSection.objects.get_or_create(id=1, defaults={
+projectSection.objects.update_or_create(id=1, defaults={
     'title': 'E-Commerce Platform',
     'slug': 'e-commerce-platform',
     'category': cat1,
     'description': 'A modern e-commerce platform with advanced features.',
     'image': 'Projects/project-1_civ0oLG.jpg',
 })
-projectSection.objects.get_or_create(id=2, defaults={
+projectSection.objects.update_or_create(id=2, defaults={
     'title': 'Business Website',
     'slug': 'business-website',
     'category': cat2,
     'description': 'Professional business website with responsive design.',
     'image': 'Projects/project-2.jpg',
 })
-projectSection.objects.get_or_create(id=3, defaults={
+projectSection.objects.update_or_create(id=3, defaults={
     'title': 'Marketing Campaign',
     'slug': 'marketing-campaign',
     'category': cat3,
