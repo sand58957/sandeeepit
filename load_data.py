@@ -57,6 +57,7 @@ sliderSection.objects.get_or_create(id=1, defaults={
     'button1_url': '/contact',
     'button2_text': 'Learn More',
     'button2_url': '/about',
+    'image': 'Home/about-baner-1.jpg',
 })
 print("✓ Slider Section created")
 
@@ -66,6 +67,7 @@ aboutSection.objects.get_or_create(id=1, defaults={
     'title': 'We Are Digital Agency',
     'short_description': 'Professional web design and development services for your business.',
     'long_description': 'We are a creative digital agency specializing in web development, design, and digital marketing. Our team of experts is dedicated to helping your business grow.',
+    'image': 'AboutSection/about-baner-1.jpg',
 })
 print("✓ About Section created")
 
@@ -111,18 +113,21 @@ projectSection.objects.get_or_create(id=1, defaults={
     'slug': 'e-commerce-platform',
     'category': cat1,
     'description': 'A modern e-commerce platform with advanced features.',
+    'image': 'Projects/project-1_civ0oLG.jpg',
 })
 projectSection.objects.get_or_create(id=2, defaults={
     'title': 'Business Website',
     'slug': 'business-website',
     'category': cat2,
     'description': 'Professional business website with responsive design.',
+    'image': 'Projects/project-2.jpg',
 })
 projectSection.objects.get_or_create(id=3, defaults={
     'title': 'Marketing Campaign',
     'slug': 'marketing-campaign',
     'category': cat3,
     'description': 'Successful digital marketing campaign.',
+    'image': 'Projects/project-3.jpg',
 })
 print("✓ Projects created")
 
