@@ -43,9 +43,9 @@ aboutPageSEO.objects.get_or_create(id=1, defaults={
 print("✓ About Page SEO created")
 
 # Team Section
-teamSection.objects.get_or_create(id=1, defaults={'name': 'Thoren Okendhild', 'position': 'Founder & Director'})
-teamSection.objects.get_or_create(id=2, defaults={'name': 'Lincoln Anthony', 'position': 'Co Founder & CEO'})
-teamSection.objects.get_or_create(id=3, defaults={'name': 'Adrian Eodri', 'position': 'Managing Director'})
+teamSection.objects.update_or_create(id=1, defaults={'name': 'Thoren Okendhild', 'position': 'Founder & Director', 'image': 'Teams/team-1.jpg'})
+teamSection.objects.update_or_create(id=2, defaults={'name': 'Lincoln Anthony', 'position': 'Co Founder & CEO', 'image': 'Teams/team-2.jpg'})
+teamSection.objects.update_or_create(id=3, defaults={'name': 'Adrian Eodri', 'position': 'Managing Director', 'image': 'Teams/team-3.jpg'})
 print("✓ Team Section created")
 
 # Slider Section
@@ -72,25 +72,29 @@ aboutSection.objects.update_or_create(id=1, defaults={
 print("✓ About Section created")
 
 # Service Section
-serviceSection.objects.get_or_create(id=1, defaults={
+serviceSection.objects.update_or_create(id=1, defaults={
     'name': 'Web Development',
     'short_description': 'Professional web development services using modern technologies.',
     'fontawesome_icon_class': 'flaticon-growth',
+    'detail_page_image': 'Services/service-1.jpg',
 })
-serviceSection.objects.get_or_create(id=2, defaults={
+serviceSection.objects.update_or_create(id=2, defaults={
     'name': 'UI/UX Design',
     'short_description': 'Beautiful and intuitive user interface designs.',
     'fontawesome_icon_class': 'flaticon-research',
+    'detail_page_image': 'Services/service-2.jpg',
 })
-serviceSection.objects.get_or_create(id=3, defaults={
+serviceSection.objects.update_or_create(id=3, defaults={
     'name': 'Digital Marketing',
     'short_description': 'Grow your online presence with our marketing strategies.',
     'fontawesome_icon_class': 'flaticon-mission',
+    'detail_page_image': 'Services/service-3.jpg',
 })
-serviceSection.objects.get_or_create(id=4, defaults={
+serviceSection.objects.update_or_create(id=4, defaults={
     'name': 'SEO Optimization',
     'short_description': 'Improve your search engine rankings and visibility.',
     'fontawesome_icon_class': 'flaticon-target',
+    'detail_page_image': 'Services/service-4.jpg',
 })
 print("✓ Service Section created")
 
@@ -132,31 +136,34 @@ projectSection.objects.update_or_create(id=3, defaults={
 print("✓ Projects created")
 
 # Testimonial Section
-testimonialsSection.objects.get_or_create(id=1, defaults={
+testimonialsSection.objects.update_or_create(id=1, defaults={
     'name': 'John Smith',
     'position': 'CEO, TechCorp',
     'description': 'Excellent service and great results! The team was professional and delivered beyond our expectations.',
     'star': 5,
+    'image': 'Testimonials/testi-1.jpg',
 })
-testimonialsSection.objects.get_or_create(id=2, defaults={
+testimonialsSection.objects.update_or_create(id=2, defaults={
     'name': 'Jane Doe',
     'position': 'Marketing Director',
     'description': 'Professional team and amazing work! They transformed our online presence completely.',
     'star': 5,
+    'image': 'Testimonials/testi-2.jpg',
 })
-testimonialsSection.objects.get_or_create(id=3, defaults={
+testimonialsSection.objects.update_or_create(id=3, defaults={
     'name': 'Mike Johnson',
     'position': 'Business Owner',
     'description': 'Highly recommended! Their expertise helped us achieve our business goals.',
     'star': 5,
+    'image': 'Testimonials/testi-3.jpg',
 })
 print("✓ Testimonials created")
 
 # Client Section
-clientSection.objects.get_or_create(id=1, defaults={'client_name': 'Client 1'})
-clientSection.objects.get_or_create(id=2, defaults={'client_name': 'Client 2'})
-clientSection.objects.get_or_create(id=3, defaults={'client_name': 'Client 3'})
-clientSection.objects.get_or_create(id=4, defaults={'client_name': 'Client 4'})
+clientSection.objects.update_or_create(id=1, defaults={'client_name': 'Client 1', 'image': 'Clients/partner-1.png'})
+clientSection.objects.update_or_create(id=2, defaults={'client_name': 'Client 2', 'image': 'Clients/partner-2.png'})
+clientSection.objects.update_or_create(id=3, defaults={'client_name': 'Client 3', 'image': 'Clients/partner-3.png'})
+clientSection.objects.update_or_create(id=4, defaults={'client_name': 'Client 4', 'image': 'Clients/partner-4.png'})
 print("✓ Client Section created")
 
 # Blog Category
@@ -166,26 +173,29 @@ blog_cat3, _ = blogCategory.objects.get_or_create(id=3, defaults={'title': 'Desi
 print("✓ Blog Categories created")
 
 # Blogs
-Blogs.objects.get_or_create(id=1, defaults={
+Blogs.objects.update_or_create(id=1, defaults={
     'title': 'How to Grow Your Business Online',
     'slug': 'how-to-grow-your-business-online',
     'author': 'Admin',
     'description': '<p>Learn the best strategies for growing your business in the digital age. This comprehensive guide covers everything from SEO to social media marketing.</p>',
     'category': blog_cat1,
+    'thumbnail': 'blog_images/blog-1.jpg',
 })
-Blogs.objects.get_or_create(id=2, defaults={
+Blogs.objects.update_or_create(id=2, defaults={
     'title': 'Latest Web Development Trends',
     'slug': 'latest-web-development-trends',
     'author': 'Admin',
     'description': '<p>Discover the latest trends in web development including new frameworks, technologies, and best practices for building modern websites.</p>',
     'category': blog_cat2,
+    'thumbnail': 'blog_images/blog-2.jpg',
 })
-Blogs.objects.get_or_create(id=3, defaults={
+Blogs.objects.update_or_create(id=3, defaults={
     'title': 'UI Design Best Practices',
     'slug': 'ui-design-best-practices',
     'author': 'Admin',
     'description': '<p>Master the art of UI design with these essential tips and best practices that will help you create beautiful user interfaces.</p>',
     'category': blog_cat3,
+    'thumbnail': 'blog_images/blog-3.jpg',
 })
 print("✓ Blogs created")
 
