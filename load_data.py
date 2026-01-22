@@ -4,7 +4,6 @@ import django
 
 # Setup Django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
-sys.path.insert(0, '/Users/sandeep/Downloads/Install')
 django.setup()
 
 # Import models

@@ -2,10 +2,10 @@ import pymysql
 import os
 
 # Database credentials
-DB_HOST = '127.0.0.1'
-DB_USER = 'root'
-DB_PASSWORD = 'Manjil@1982'
-DB_NAME = 'agency_db'
+DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
+DB_USER = os.getenv('DB_USER', 'root')
+DB_PASSWORD = os.getenv('DB_PASSWORD', 'Manjil@1982')
+DB_NAME = os.getenv('DB_NAME', 'agency_db')
 
 def load_data():
     conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME)
