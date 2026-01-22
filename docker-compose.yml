@@ -18,22 +18,17 @@ services:
     image: sand58957/sandeepit:latest
     container_name: sandeeepit_web
     command: >
-      sh -c "python manage.py migrate &&
+      sh -c "echo 'Waiting for database...' &&
+             sleep 10 &&
+             python manage.py migrate &&
              python manage.py collectstatic --noinput &&
              gunicorn --bind 0.0.0.0:8000 core.wsgi:application"
+    env_file:
+      - .env
     volumes:
       - .:/app
     ports:
       - "8000:8000"
-    environment:
-      - DEBUG=True
-      - ALLOWED_HOSTS=*
-      - DB_NAME=agency_db
-      - DB_USER=root
-      - DB_PASSWORD=Manjil@1982
-      - DB_HOST=db
-      - DB_PORT=3306
-      - WHITENOISE_CONFIG=True
     depends_on:
       - db
 
