@@ -25,6 +25,9 @@ services:
              gunicorn --bind 0.0.0.0:8000 core.wsgi:application"
     env_file:
       - .env
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
     volumes:
       - .:/app
     ports:
