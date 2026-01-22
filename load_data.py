@@ -15,10 +15,10 @@ from apps.home.models import (
     pricingSectionTitle, projectSectionTitle, teamSectionTitle, 
     testimonialSectionTitle, serviceSectionTitle
 )
-from apps.blog.models import BlogCategory, Blogs, blogPageSeo
+from apps.blog.models import blogCategory, Blogs, blogPageSEO
 from apps.settings.models import websiteSetting, SeoSetting, headerFooterSetting
-from apps.contact.models import ContactFormTitle, SubscriberFormTitle, contactPageSeo
-from apps.pricing.models import pricingSection, pricingPageSeo
+from apps.contact.models import ContactFormTitle, SubscriberFormTitle, contactPageSEO
+from apps.pricing.models import pricingSection, pricingPageSEO
 from apps.menus.models import primaryMenu
 
 print("Loading sample data...")
@@ -65,7 +65,7 @@ aboutSection.objects.get_or_create(id=1, defaults={
     'subtitle': 'About Us',
     'title': 'We Are Digital Agency',
     'short_description': 'Professional web design and development services for your business.',
-    'description': 'We are a creative digital agency specializing in web development, design, and digital marketing. Our team of experts is dedicated to helping your business grow.',
+    'long_description': 'We are a creative digital agency specializing in web development, design, and digital marketing. Our team of experts is dedicated to helping your business grow.',
 })
 print("✓ About Section created")
 
@@ -73,22 +73,22 @@ print("✓ About Section created")
 serviceSection.objects.get_or_create(id=1, defaults={
     'name': 'Web Development',
     'short_description': 'Professional web development services using modern technologies.',
-    'icon': 'flaticon-growth',
+    'fontawesome_icon_class': 'flaticon-growth',
 })
 serviceSection.objects.get_or_create(id=2, defaults={
     'name': 'UI/UX Design',
     'short_description': 'Beautiful and intuitive user interface designs.',
-    'icon': 'flaticon-research',
+    'fontawesome_icon_class': 'flaticon-research',
 })
 serviceSection.objects.get_or_create(id=3, defaults={
     'name': 'Digital Marketing',
     'short_description': 'Grow your online presence with our marketing strategies.',
-    'icon': 'flaticon-mission',
+    'fontawesome_icon_class': 'flaticon-mission',
 })
 serviceSection.objects.get_or_create(id=4, defaults={
     'name': 'SEO Optimization',
     'short_description': 'Improve your search engine rankings and visibility.',
-    'icon': 'flaticon-target',
+    'fontawesome_icon_class': 'flaticon-target',
 })
 print("✓ Service Section created")
 
@@ -130,20 +130,20 @@ print("✓ Projects created")
 testimonialsSection.objects.get_or_create(id=1, defaults={
     'name': 'John Smith',
     'position': 'CEO, TechCorp',
-    'comment': 'Excellent service and great results! The team was professional and delivered beyond our expectations.',
-    'rating': 5,
+    'description': 'Excellent service and great results! The team was professional and delivered beyond our expectations.',
+    'star': 5,
 })
 testimonialsSection.objects.get_or_create(id=2, defaults={
     'name': 'Jane Doe',
     'position': 'Marketing Director',
-    'comment': 'Professional team and amazing work! They transformed our online presence completely.',
-    'rating': 5,
+    'description': 'Professional team and amazing work! They transformed our online presence completely.',
+    'star': 5,
 })
 testimonialsSection.objects.get_or_create(id=3, defaults={
     'name': 'Mike Johnson',
     'position': 'Business Owner',
-    'comment': 'Highly recommended! Their expertise helped us achieve our business goals.',
-    'rating': 5,
+    'description': 'Highly recommended! Their expertise helped us achieve our business goals.',
+    'star': 5,
 })
 print("✓ Testimonials created")
 
@@ -155,9 +155,9 @@ clientSection.objects.get_or_create(id=4, defaults={'client_name': 'Client 4'})
 print("✓ Client Section created")
 
 # Blog Category
-blog_cat1, _ = BlogCategory.objects.get_or_create(id=1, defaults={'title': 'Business', 'slug': 'business'})
-blog_cat2, _ = BlogCategory.objects.get_or_create(id=2, defaults={'title': 'Technology', 'slug': 'technology'})
-blog_cat3, _ = BlogCategory.objects.get_or_create(id=3, defaults={'title': 'Design', 'slug': 'design'})
+blog_cat1, _ = blogCategory.objects.get_or_create(id=1, defaults={'title': 'Business', 'slug': 'business'})
+blog_cat2, _ = blogCategory.objects.get_or_create(id=2, defaults={'title': 'Technology', 'slug': 'technology'})
+blog_cat3, _ = blogCategory.objects.get_or_create(id=3, defaults={'title': 'Design', 'slug': 'design'})
 print("✓ Blog Categories created")
 
 # Blogs
@@ -185,7 +185,7 @@ Blogs.objects.get_or_create(id=3, defaults={
 print("✓ Blogs created")
 
 # Blog Page SEO
-blogPageSeo.objects.get_or_create(id=1, defaults={
+blogPageSEO.objects.get_or_create(id=1, defaults={
     'meta_title': 'Blog - TCG Agency',
     'meta_description': 'Read our latest blog posts about web development, design, and digital marketing.',
 })
@@ -234,55 +234,43 @@ print("✓ SEO Settings created")
 pricingSection.objects.get_or_create(id=1, defaults={
     'title': 'Basic',
     'price': '29',
-    'duration': 'month',
-    'feature1': '5 Projects',
-    'feature2': '10GB Storage',
-    'feature3': 'Email Support',
-    'feature4': 'Basic Analytics',
+    'description': '5 Projects, 10GB Storage, Email Support, Basic Analytics',
     'button_text': 'Get Started',
     'button_url': '/contact',
 })
 pricingSection.objects.get_or_create(id=2, defaults={
     'title': 'Standard',
     'price': '59',
-    'duration': 'month',
-    'feature1': '15 Projects',
-    'feature2': '50GB Storage',
-    'feature3': 'Priority Support',
-    'feature4': 'Advanced Analytics',
-    'is_popular': True,
+    'description': '15 Projects, 50GB Storage, Priority Support, Advanced Analytics',
+    'is_featured': True,
     'button_text': 'Get Started',
     'button_url': '/contact',
 })
 pricingSection.objects.get_or_create(id=3, defaults={
     'title': 'Premium',
     'price': '99',
-    'duration': 'month',
-    'feature1': 'Unlimited Projects',
-    'feature2': '100GB Storage',
-    'feature3': '24/7 Support',
-    'feature4': 'Custom Analytics',
+    'description': 'Unlimited Projects, 100GB Storage, 24/7 Support, Custom Analytics',
     'button_text': 'Get Started',
     'button_url': '/contact',
 })
 print("✓ Pricing Plans created")
 
 # Pricing Page SEO
-pricingPageSeo.objects.get_or_create(id=1, defaults={
+pricingPageSEO.objects.get_or_create(id=1, defaults={
     'meta_title': 'Pricing - TCG Agency',
     'meta_description': 'Check out our affordable pricing plans.',
 })
 print("✓ Pricing Page SEO created")
 
 # Section Titles
-serviceSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Our Services', 'title': 'What We Offer'})
-projectSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Our Portfolio', 'title': 'Recent Projects'})
-testimonialSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Testimonials', 'title': 'What Clients Say'})
-blogSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Latest News', 'title': 'Our Blog'})
-teamSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Our Team', 'title': 'Meet Our Experts'})
-clientSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Our Clients', 'title': 'Trusted By'})
-funfactSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Fun Facts', 'title': 'Our Achievements'})
-pricingSectionTitle.objects.get_or_create(id=1, defaults={'sub_title': 'Pricing', 'title': 'Our Packages'})
+serviceSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Our Services', 'title_big': 'What We Offer'})
+projectSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Our Portfolio', 'title_big': 'Recent Projects'})
+testimonialSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Testimonials', 'title_big': 'What Clients Say'})
+blogSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Latest News', 'title_big': 'Our Blog'})
+teamSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Our Team', 'title_big': 'Meet Our Experts'})
+clientSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Our Clients', 'title_big': 'Trusted By'})
+funfactSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Fun Facts', 'title_big': 'Our Achievements'})
+pricingSectionTitle.objects.get_or_create(id=1, defaults={'title_small': 'Pricing', 'title_big': 'Our Packages'})
 print("✓ Section Titles created")
 
 # Contact Form Title
@@ -301,7 +289,7 @@ ContactFormTitle.objects.get_or_create(id=1, defaults={
 print("✓ Contact Form Title created")
 
 # Contact Page SEO
-contactPageSeo.objects.get_or_create(id=1, defaults={
+contactPageSEO.objects.get_or_create(id=1, defaults={
     'meta_title': 'Contact Us - TCG Agency',
     'meta_description': 'Get in touch with us for your project inquiries.',
 })
@@ -318,13 +306,13 @@ SubscriberFormTitle.objects.get_or_create(id=1, defaults={
 print("✓ Subscriber Form Title created")
 
 # Primary Menu
-primaryMenu.objects.get_or_create(id=1, defaults={'title': 'Home', 'url': '/', 'order': 1})
-primaryMenu.objects.get_or_create(id=2, defaults={'title': 'About', 'url': '/about', 'order': 2})
-primaryMenu.objects.get_or_create(id=3, defaults={'title': 'Services', 'url': '/service', 'order': 3})
-primaryMenu.objects.get_or_create(id=4, defaults={'title': 'Projects', 'url': '/projects', 'order': 4})
-primaryMenu.objects.get_or_create(id=5, defaults={'title': 'Blog', 'url': '/blogs', 'order': 5})
-primaryMenu.objects.get_or_create(id=6, defaults={'title': 'Pricing', 'url': '/pricing', 'order': 6})
-primaryMenu.objects.get_or_create(id=7, defaults={'title': 'Contact', 'url': '/contact', 'order': 7})
+primaryMenu.objects.get_or_create(id=1, defaults={'name': 'Home', 'url': '/', 'order': 1})
+primaryMenu.objects.get_or_create(id=2, defaults={'name': 'About', 'url': '/about', 'order': 2})
+primaryMenu.objects.get_or_create(id=3, defaults={'name': 'Services', 'url': '/service', 'order': 3})
+primaryMenu.objects.get_or_create(id=4, defaults={'name': 'Projects', 'url': '/projects', 'order': 4})
+primaryMenu.objects.get_or_create(id=5, defaults={'name': 'Blog', 'url': '/blogs', 'order': 5})
+primaryMenu.objects.get_or_create(id=6, defaults={'name': 'Pricing', 'url': '/pricing', 'order': 6})
+primaryMenu.objects.get_or_create(id=7, defaults={'name': 'Contact', 'url': '/contact', 'order': 7})
 print("✓ Primary Menu created")
 
 # Home Page SEO
