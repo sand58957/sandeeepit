@@ -53,7 +53,7 @@ services:
     container_name: agency_pgadmin
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: sandeep@example.com
+      PGADMIN_DEFAULT_EMAIL: 008snk@gmail.com
       PGADMIN_DEFAULT_PASSWORD: Manjil@1982
     ports:
       - "8080:80"
