@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       POSTGRES_DB: agency_db
-      POSTGRES_USER: agency_user
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: Manjil@1982
     ports:
       - "5432:5432"
@@ -35,7 +35,7 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
       - DB_NAME=agency_db
-      - DB_USER=agency_user
+      - DB_USER=root
       - DB_PASSWORD=Manjil@1982
       - POSTGRE_DB=True
       - MYSQL_DB=False
