@@ -32,7 +32,7 @@ services:
              echo 'Collecting static files...' &&
              python manage.py collectstatic --noinput &&
              echo 'Starting Gunicorn...' &&
-             gunicorn --bind 0.0.0.0:8000 --workers 3 --threads 2 --worker-class gthread core.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers 3 --threads 2 --worker-class gthread --preload --max-requests 1000 core.wsgi:application"
     env_file:
       - .env
     environment:

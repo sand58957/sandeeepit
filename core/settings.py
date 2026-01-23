@@ -125,6 +125,7 @@ if os.getenv('MYSQL_DB') == 'True':
             'PASSWORD': os.getenv('DB_PASSWORD'),
             'HOST': os.getenv('DB_HOST'),
             'PORT': os.getenv('DB_PORT'),
+            'CONN_MAX_AGE': 600,
             'OPTIONS': {
                 'charset': 'utf8mb4',
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -140,6 +141,7 @@ elif os.getenv('POSTGRE_DB') == 'True':
             "PASSWORD": os.getenv("DB_PASSWORD"),
             "HOST": os.getenv("DB_HOST"),
             "PORT": os.getenv("DB_PORT"),
+            'CONN_MAX_AGE': 600,
             'OPTIONS': {
                 'client_encoding': 'UTF8',
             },
@@ -238,4 +240,7 @@ if os.getenv('WHITENOISE_CONFIG') == 'True':
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         }
     }
+    WHITENOISE_MAX_AGE = 31536000  # 1 year caching
+    WHITENOISE_AUTOREFRESH = False
+    WHITENOISE_USE_FINDERS = False
 
