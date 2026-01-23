@@ -230,7 +230,7 @@ AUTH_USER_MODEL = 'accounts.User'# white noise settings
 if os.getenv('WHITENOISE_CONFIG') == 'True':
     STORAGES = {
         "staticfiles": {
-            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         },
         "default": {
             "BACKEND": "django.core.files.storage.FileSystemStorage",

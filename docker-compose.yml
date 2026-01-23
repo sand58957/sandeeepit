@@ -27,7 +27,7 @@ services:
              sleep 10 &&
              python manage.py migrate &&
              python manage.py collectstatic --noinput &&
-             gunicorn --bind 0.0.0.0:8000 core.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers 3 core.wsgi:application"
     env_file:
       - .env
     environment:
