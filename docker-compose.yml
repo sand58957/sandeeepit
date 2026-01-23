@@ -32,7 +32,7 @@ services:
              echo 'Collecting static files...' &&
              python manage.py collectstatic --noinput &&
              echo 'Starting Gunicorn...' &&
-             gunicorn --bind 0.0.0.0:8000 --workers 3 core.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers 3 --threads 2 --worker-class gthread core.wsgi:application"
     env_file:
       - .env
     environment:
@@ -49,6 +49,7 @@ services:
       - ALLOWED_HOSTS=94.136.185.149,localhost,127.0.0.1,*
     volumes:
       - .:/app
+      - media_data:/app/media
     ports:
       - "8000:8000"
     depends_on:
@@ -69,3 +70,4 @@ services:
 
 volumes:
   postgres_data:
+  media_data:
