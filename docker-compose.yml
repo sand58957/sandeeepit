@@ -23,6 +23,7 @@ services:
     build: .
     image: sand58957/sandeepit:latest
     container_name: sandeeepit_web
+    restart: always
     command: >
       sh -c "echo 'Waiting for database...' &&
              sleep 10 &&
