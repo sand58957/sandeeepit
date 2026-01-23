@@ -31,3 +31,5 @@ psycopg2-binary
 mysqlclient
 pymysql
 cryptography
+django-redis
+redis
