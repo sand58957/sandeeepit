@@ -238,4 +238,5 @@ if os.getenv('WHITENOISE_CONFIG') == 'True':
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         }
     }
+    WHITENOISE_MANIFEST_STRICT = False
 
