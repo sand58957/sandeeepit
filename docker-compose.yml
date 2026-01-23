@@ -42,5 +42,18 @@ services:
       - db
       - redis
 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: agency_phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - MYSQL_ROOT_PASSWORD=Manjil@1982
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
 volumes:
   mysql_data:
