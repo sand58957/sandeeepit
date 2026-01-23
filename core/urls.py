@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('apps.marketing.urls')),
     path('', include('apps.custompage.urls')),
     path('', include('apps.settings.urls')),
+    path('', include('apps.stocks.urls')),
     path('sitemap.xml', generate_sitemap, name='generate_sitemap'),
 ]
 

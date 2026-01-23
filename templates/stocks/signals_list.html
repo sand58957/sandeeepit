@@ -1,0 +1,154 @@
+{% extends "front/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} - {{ website_settings.name }}{% endblock title %}
+
+{% block content %}
+<section class="breadcrumb-area" style="background-image: url({% static 'front/assets/img/breadcrumb/breadcrumb-bg.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-content text-center">
+                    <h2>{{ title }}</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Stock Signals</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stock-signals-area py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <div class="section-title">
+                    <h4>Market Analysis</h4>
+                    <h2>Fundamental Trading Signals</h2>
+                    <p>Live fundamental screening data for NEPSE stocks. Data is retrieved and analyzed periodically.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end d-flex align-items-center justify-content-lg-end">
+                {% if user.is_authenticated and user.role == 'Admin' %}
+                    <a href="{% url 'trigger_scraper' %}" class="btn btn-primary">
+                        <i class="bi bi-arrow-repeat"></i> Update Data Now
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if messages %}
+            <div class="row">
+                <div class="col-12">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive card shadow-sm p-4" style="border-radius: 15px; border: none;">
+                    <table class="table table-hover align-middle" id="stockSignalsTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Sector</th>
+                                <th>LTP</th>
+                                <th>Gain</th>
+                                <th>PE</th>
+                                <th>PB</th>
+                                <th>ROE</th>
+                                <th>Div. Yield</th>
+                                <th>Summary</th>
+                                <th>Strength</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for signal in signals %}
+                            <tr>
+                                <td><strong>{{ signal.stock.symbol }}</strong></td>
+                                <td>{{ signal.stock.sector }}</td>
+                                <td>{{ signal.ltp|default:"-" }}</td>
+                                <td class="{% if signal.daily_gain > 0 %}text-success{% elif signal.daily_gain < 0 %}text-danger{% endif %}">
+                                    {{ signal.daily_gain|default:"0" }}%
+                                </td>
+                                <td>{{ signal.pe_ratio|default:"-" }}</td>
+                                <td>{{ signal.pb_ratio|default:"-" }}</td>
+                                <td>{{ signal.roe|default:"-" }}%</td>
+                                <td>{{ signal.dividend_yield|default:"-" }}%</td>
+                                <td>
+                                    {% if signal.signal_summary == 'Strong' %}
+                                        <span class="badge bg-success">{{ signal.signal_summary }}</span>
+                                    {% elif signal.signal_summary == 'Medium' %}
+                                        <span class="badge bg-warning text-dark">{{ signal.signal_summary }}</span>
+                                    {% elif signal.signal_summary == 'Weak' %}
+                                        <span class="badge bg-danger">{{ signal.signal_summary }}</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">{{ signal.signal_summary|default:"-" }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="text-warning">{{ signal.financial_strength|default:"-" }}</span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="10" class="text-center py-5">No signals found. Click "Update Data" to fetch latest data.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 text-muted small">
+                * Data source: Nepse Alpha. Last updated: {% if signals %}{{ signals.0.updated_at|date:"Y-m-d H:i" }}{% else %}Never{% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Include DataTables for sorting and searching -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    $('#stockSignalsTable').DataTable({
+        "order": [[ 0, "asc" ]],
+        "pageLength": 25,
+        "language": {
+            "search": "Filter Stocks:"
+        }
+    });
+});
+</script>
+
+<style>
+    .stock-signals-area {
+        background-color: #f8fafc;
+    }
+    .badge {
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 20px;
+    }
+    #stockSignalsTable thead th {
+        font-weight: 600;
+        color: #475569;
+        border-bottom: 2px solid #e2e8f0;
+    }
+</style>
+{% endblock %}

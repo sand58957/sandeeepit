@@ -33,3 +33,4 @@ pymysql
 cryptography
 django-redis
 redis
+beautifulsoup4

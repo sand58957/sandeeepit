@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'apps.marketing',
     'apps.custompage',
     'apps.analytics',
+    'apps.stocks',
     'ckeditor',
     'django_user_agents',
 ]
