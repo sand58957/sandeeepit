@@ -1,7 +1,5 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
 from django.core.cache import cache
 
 
@@ -111,19 +109,4 @@ class headerFooterSetting(models.Model):
 class templateSettings(models.Model):
     template1 = models.BooleanField(default=True)
     template2 = models.BooleanField(default=False)
-
-
-@receiver([post_save, post_delete], sender=websiteSetting)
-def clear_website_settings_cache(sender, instance, **kwargs):
-    cache.delete('website_settings')
-
-
-@receiver([post_save, post_delete], sender=SeoSetting)
-def clear_seo_settings_cache(sender, instance, **kwargs):
-    cache.delete('seo_settings')
-
-
-@receiver([post_save, post_delete], sender=headerFooterSetting)
-def clear_header_footer_cache(sender, instance, **kwargs):
-    cache.delete('header_footer_settings')
     
