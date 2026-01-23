@@ -21,7 +21,7 @@ def contactPageFront(request):
     # Contact Submit #
 # # # # # # # # # # # # # # # # # #
 def ContactSubmit(request):
-    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    if request.method == 'POST':
         # Check if there's a session variable for the last submission time
         last_submission_time_str = request.session.get('last_contact_submission_time')
 
@@ -57,7 +57,7 @@ def ContactSubmit(request):
     # Subscriber Submit #
 # # # # # # # # # # # # # # # # # #        
 def SubscriberSubmit(request):
-    if request.method == "POST" and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    if request.method == "POST":
         email = request.POST.get('email') 
         
         # Check if the email already exists in the database
