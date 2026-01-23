@@ -1,15 +1,16 @@
 services:
   db:
-    image: mysql:8.0
-    container_name: agency_db_container
+    image: postgres:alpine
+    container_name: agency_postgres_container
     restart: always
     environment:
-      MYSQL_DATABASE: agency_db
-      MYSQL_ROOT_PASSWORD: Manjil@1982
+      POSTGRES_DB: agency_db
+      POSTGRES_USER: agency_user
+      POSTGRES_PASSWORD: Manjil@1982
     ports:
-      - "3307:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
 
   redis:
     image: redis:alpine
@@ -32,7 +33,12 @@ services:
       - .env
     environment:
       - DB_HOST=db
-      - DB_PORT=3306
+      - DB_PORT=5432
+      - DB_NAME=agency_db
+      - DB_USER=agency_user
+      - DB_PASSWORD=Manjil@1982
+      - POSTGRE_DB=True
+      - MYSQL_DB=False
       - REDIS_URL=redis://redis:6379/1
     volumes:
       - .:/app
@@ -42,18 +48,17 @@ services:
       - db
       - redis
 
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: agency_phpmyadmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: agency_pgadmin
     restart: always
     environment:
-      - PMA_HOST=db
-      - PMA_PORT=3306
-      - MYSQL_ROOT_PASSWORD=Manjil@1982
+      PGADMIN_DEFAULT_EMAIL: sandeep@example.com
+      PGADMIN_DEFAULT_PASSWORD: Manjil@1982
     ports:
       - "8080:80"
     depends_on:
       - db
 
 volumes:
-  mysql_data:
+  postgres_data:
