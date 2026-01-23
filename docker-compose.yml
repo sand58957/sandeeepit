@@ -26,8 +26,11 @@ services:
     command: >
       sh -c "echo 'Waiting for database...' &&
              sleep 10 &&
+             echo 'Running migrations...' &&
              python manage.py migrate &&
+             echo 'Collecting static files...' &&
              python manage.py collectstatic --noinput &&
+             echo 'Starting Gunicorn...' &&
              gunicorn --bind 0.0.0.0:8000 --workers 3 core.wsgi:application"
     env_file:
       - .env
@@ -42,7 +45,7 @@ services:
       - REDIS_URL=redis://redis:6379/1
       - WHITENOISE_CONFIG=True
       - DEBUG=True
-      - ALLOWED_HOSTS='*'
+      - ALLOWED_HOSTS=*
     volumes:
       - .:/app
     ports:
